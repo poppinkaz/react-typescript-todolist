@@ -1,15 +1,21 @@
 import React from "react";
+import "./todoListItem.css";
 
 interface TodoListItemProps{
     todo: Todo;
+    toggleTodo: (selectedTodo: Todo) => void;
 }
 
-export const TodoListItem: React.FC<TodoListItemProps> = ({todo}) => {
+export const TodoListItem: React.FC<TodoListItemProps> = ({todo, toggleTodo}) => {
     return (
       <li>
-        <label style={{textDecoration: todo.complete? "line-through": "none"}}>
+        <label className={todo.complete ? "complete": undefined}>
 
-            <input type="checkbox" checked={todo.complete}/>
+            <input 
+                type="checkbox" 
+                checked={todo.complete}
+                onChange={() => toggleTodo(todo)}
+            />
             {todo.text}
 
         </label>
